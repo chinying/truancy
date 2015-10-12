@@ -1,0 +1,26 @@
+#lessons{
+    display: ;
+}
+
+.lessons{
+    margin: auto;
+}
+
+.lesson-attended{background: red;}
+
+.lesson-slot{
+    width: 600px;
+    color: #999;
+    border: solid 1px;
+}
+
+.toggle-attendance{
+    background: #77F779;
+    font-size: .9em;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.toggle-attendance:hover{
+    background: red;
+    transition: .2s ease-out;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" ng-app="timetable-visual">
+<!--<![endif]-->
+ <head>
+  <meta charset="utf-8">
+  <!--[if IE]><![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Seah Chin Ying" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--Dependencies-->
+  <script src="components/angular/angular.js"></script>
+  <script src="components/jquery/dist/jquery.min.js"></script>
+  <script src="components/lodash/lodash.min.js"></script>
+
+  <!--Angular scripts-->
+  <script src="javascripts/lib/service.js"></script>
+  <script src="javascripts/controllers/main.js"></script>
+  <script src="javascripts/script.js"></script>
+
+  <!-- !CSS -->
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+  <!-- Uncomment if you are specifically targeting less enabled mobile browsers
+  <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">  -->
+ </head>
+ <body>
+  <div id="wrapper" ng-controller="mainController">
+    <h3>Some stats</h3>
+    <span> {{totalTime}} hours total </span>
+    <br />
+    <span> {{attendancePercentage}} % attendance (hours) </span>
+    <br />
+    <span> % attendance (lessons) </span>
+    <br />
+    <span> % attendance (lessons extrapolated) </span>
+    <br />
+    <span> more classes to skip </span>
+
+    <h3>Lessons Listing</h3>
+
+    <div id="lessons">
+      <span> Total of {{lessons.length}} lessons </span>
+      <button ng-click="toggleShowAll()">Show / Hide All</button> <!--Button that doesn't work yet-->
+
+      <div class="lesson-slot" ng-class="{'lesson-attended': lesson.attended}" ng-repeat="lesson in lessons | orderBy:'date' " id="entry-{{lesson.lessonId}}">
+        {{lesson.lessonType}}: {{lesson.subject}} {{lesson.date | date : 'd/M/yy' }} {{lesson.startTime}} - {{lesson.endTime}}
+        <button class="toggle-attendance" ng-click="attend($event);">Mark</button>
+      </div>
+    </div>
+
+  </div>
+ </body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "truancy",
+  "version": "0.0.0",
+  "authors": [
+    "chinying <scy.6char@gmail.com>"
+  ],
+  "description": "",
+  "main": "app.js",
+  "moduleType": [],
+  "keywords": [
+    "attendance",
+    "statistics"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "fontawesome#~4.4.0",
+    "angular": "~1.4.7",
+    "lodash": "~3.10.1"
+  }
+}

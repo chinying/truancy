@@ -1,0 +1,5 @@
+config.js
+node_modules/**
+public/components/**
+
+learning_points.md
