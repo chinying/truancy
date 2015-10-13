@@ -4,7 +4,7 @@ var lessonSchema = mongoose.Schema({
   subject: String,
   subjectCode: String,
   lessonType: String,
-  date: String,
+  date: Date,
   startTime: String,
   endTime: String,
   duration: Number,
