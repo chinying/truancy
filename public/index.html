@@ -20,6 +20,8 @@
   <script src="components/angular/angular.js"></script>
   <script src="components/jquery/dist/jquery.min.js"></script>
   <script src="components/lodash/lodash.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css" />
+  <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <!--Angular scripts-->
   <script src="javascripts/lib/service.js"></script>
@@ -27,13 +29,12 @@
   <script src="javascripts/script.js"></script>
 
   <!-- !CSS -->
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
   <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">  -->
  </head>
  <body>
-  <div id="wrapper" ng-controller="mainController">
+  <div id="wrapper" ng-controller="mainController" class="container">
     <h3>Some stats</h3>
     <span> <strong>{{totalTime}}</strong> hours total </span>
     <br />
@@ -47,16 +48,31 @@
     <br />
     <span> more classes to skip </span>
 
-    <h3>Lessons Listing</h3>
-
-    <div id="lessons">
+    <div id="lessons" class="">
+      <h3>Lessons Listing</h3>
       <span> Total of {{lessons.length}} lessons </span>
       <button ng-click="toggleShowAll()">Show / Hide All</button> <!--Button that doesn't work yet-->
-
-      <div class="lesson-slot" ng-class="{'lesson-attended': lesson.attended}" ng-repeat="lesson in lessons | orderBy:'date' " id="entry-{{lesson.lessonId}}">
-        {{lesson.lessonType}}: {{lesson.subject}} {{lesson.date | date : 'd/M/yy' }} {{lesson.startTime}} - {{lesson.endTime}}
-        <button class="toggle-attendance" ng-click="attend($event);">Mark</button>
-      </div>
+      <button>Filter past</button>
+      <span class="pull-right">Sort by <a href="">date</a></span>
+      <div class="clearfix"></div>
+      <table class="table">
+        <tr>
+          <th></th>
+          <th>Subject</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th></th>
+        </tr>
+        <tr ng-class="{'lesson-attended': lesson.attended}" ng-repeat="lesson in lessons | orderBy:['date', 'startTime'] " id="entry-{{lesson.lessonId}}">
+          <td>{{lesson.lessonType}}</td>
+          <td>{{lesson.subject}}</td>
+          <td>{{lesson.date | date : 'd/M/yy' }}</td>
+          <td>{{lesson.startTime}} - {{lesson.endTime}}</td>
+          <td>
+            <button class="toggle-attendance" ng-click="attend($event);">Mark</button>
+          </td>
+        </tr>
+      </table>
     </div>
 
   </div>

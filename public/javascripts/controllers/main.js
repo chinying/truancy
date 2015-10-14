@@ -16,14 +16,14 @@ angular.module('attendance-controller', [])
       });
 
     $scope.attend = function(e){
-      var parentId = e.target.parentElement.id;
-      var flag = (e.target.parentElement.classList.contains('lesson-attended')) ? 0 : 1;
+      var parentId = e.target.parentElement.parentElement.id;
+      var flag = (e.target.parentElement.parentElement.classList.contains('lesson-attended')) ? 0 : 1;
       console.log(parentId, flag);
       parentId = parentId.split('-');
       parentId = parentId[1];
       Lesson.attended(parentId, flag)
         .success(function(data){
-          $(e.target.parentElement).toggleClass('lesson-attended');
+          $(e.target.parentElement.parentElement).toggleClass('lesson-attended');
           if (flag){
             updateStats(parentId, 1);
             //console.log("should increment");

@@ -3,15 +3,14 @@
 }
 
 .lessons{
-    margin: auto;
 }
 
-.lesson-attended{background: red;}
+.lesson-attended{background: #F9C6BA;}
 
 .lesson-slot{
-    width: 600px;
     color: #999;
     border: solid 1px;
+    padding: 3px;
 }
 
 .toggle-attendance{
