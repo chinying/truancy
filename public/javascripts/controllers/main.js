@@ -11,6 +11,7 @@ angular.module('attendance-controller', [])
         var t = parseData();
         $scope.totalTime = t.totalDuration;
         $scope.hoursAttended = t.hoursAttended;
+        $scope.lessonsAttended = t.lessonsAttended;
         $scope.attendancePercentage =  t.percentage;
       });
 
@@ -22,6 +23,14 @@ angular.module('attendance-controller', [])
       parentId = parentId[1];
       Lesson.attended(parentId, flag)
         .success(function(data){
+          $(e.target.parentElement).toggleClass('lesson-attended');
+          if (flag){
+            updateStats(parentId, 1);
+            //console.log("should increment");
+          } else{
+            updateStats(parentId, -1);
+            //console.log("decrement");
+          }
           console.log(data);
         });
       //console.log(parentId + " got clicked");
@@ -50,6 +59,14 @@ angular.module('attendance-controller', [])
         'lessonsAttended' : lessonsAttended,
         'percentage' : hoursAttended / totalDuration * 100
       };
+    };
+
+    var updateStats = function(_id, flag){
+      $scope.hoursAttended += (flag)*($scope.lessons[_id].duration);
+      $scope.lessonsAttended += (flag);
+
+      //needs to be recalculated
+      $scope.attendancePercentage = ($scope.hoursAttended / $scope.totalTime) * 100;
     };
 
   }]);
