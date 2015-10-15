@@ -37,11 +37,11 @@
  <body>
   <div id="wrapper" ng-controller="mainController" class="container">
     <h3>Some stats</h3>
-    <span> <strong>{{totalTime}}</strong> hours total </span>
+    <span> <strong>{{totalTime}}</strong> minutes total </span>
     <br />
-    <span> <strong>{{hoursAttended}}</strong> hours attended </span>
+    <span> <strong>{{hoursAttended}}</strong> minutes attended </span>
     <br />
-    <span> {{attendancePercentage}} % attendance (hours) </span>
+    <span> {{attendancePercentage}} % attendance (minutes) </span>
     <br />
     <span> % attendance (lessons) </span>
     <br />
@@ -52,8 +52,8 @@
     <div id="lessons" class="">
       <h3>Lessons Listing</h3>
       <span> Total of {{lessons.length}} lessons </span>
-      <button ng-click="toggleShowAll()">Show / Hide All</button> <!--Button that doesn't work yet-->
-      <button>Filter past</button>
+      <button ng-click="">Show / Hide All</button> <!--Button that doesn't work yet-->
+      <button ng-click="dateRange = null">Filter past</button>
       <span class="pull-right">Sort by <a href="">date</a></span>
       <div class="clearfix"></div>
       <table class="table">
@@ -64,7 +64,7 @@
           <th>Time</th>
           <th></th>
         </tr>
-        <tr ng-class="{'lesson-attended': lesson.attended}" ng-repeat="lesson in lessons | orderBy:['date', 'startTime'] " id="entry-{{lesson.lessonId}}">
+        <tr ng-class="{'lesson-attended': lesson.attended}" ng-repeat="lesson in lessons | orderBy:['date', 'startTime'] | filterDate:dateRange" id="entry-{{lesson.lessonId}}">
           <td>{{lesson.lessonType}}</td>
           <td>{{lesson.subject}}</td>
           <td>{{lesson.date | date : 'd/M/yy' }}</td>

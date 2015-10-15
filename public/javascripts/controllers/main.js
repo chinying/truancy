@@ -35,7 +35,7 @@ angular.module('attendance-controller', [])
         });
       //console.log(parentId + " got clicked");
       //console.log(classes);
-    }
+    };
 
     //private methods
 
@@ -69,4 +69,14 @@ angular.module('attendance-controller', [])
       $scope.attendancePercentage = ($scope.hoursAttended / $scope.totalTime) * 100;
     };
 
-  }]);
+  }])
+
+  .filter('filterDate', function(){
+    var timeNow = moment();
+    var showAll = moment("01/09/2015", "DD-MM-YYYY");
+    return function(lessons){
+      return _.filter(lessons, function(lesson){
+        return moment(lesson.date).isAfter(showAll);
+      });
+    };
+  });
