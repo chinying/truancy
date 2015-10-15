@@ -9,10 +9,12 @@ angular.module('attendance-controller', [])
       .success(function(data){
         $scope.lessons = data;
         var t = parseData();
+        var showAll = moment("01/09/2015", "DD-MM-YYYY");
         $scope.totalTime = t.totalDuration;
         $scope.hoursAttended = t.hoursAttended;
         $scope.lessonsAttended = t.lessonsAttended;
         $scope.attendancePercentage =  t.percentage;
+        $scope.dateRange = showAll;
       });
 
     $scope.attend = function(e){
@@ -35,6 +37,11 @@ angular.module('attendance-controller', [])
         });
       //console.log(parentId + " got clicked");
       //console.log(classes);
+    };
+
+    $scope.filterPast = function(){
+      console.log($scope.dateRange);
+      $scope.dateRange = moment();
     };
 
     //private methods
@@ -72,11 +79,11 @@ angular.module('attendance-controller', [])
   }])
 
   .filter('filterDate', function(){
-    var timeNow = moment();
-    var showAll = moment("01/09/2015", "DD-MM-YYYY");
-    return function(lessons){
+    /*var timeNow = moment();
+    var showAll = moment("01/09/2015", "DD-MM-YYYY");*/
+    return function(lessons, dateRange){
       return _.filter(lessons, function(lesson){
-        return moment(lesson.date).isAfter(showAll);
+        return moment(lesson.date).isAfter(dateRange);
       });
     };
   });

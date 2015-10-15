@@ -52,8 +52,7 @@
     <div id="lessons" class="">
       <h3>Lessons Listing</h3>
       <span> Total of {{lessons.length}} lessons </span>
-      <button ng-click="">Show / Hide All</button> <!--Button that doesn't work yet-->
-      <button ng-click="dateRange = null">Filter past</button>
+      <button ng-click="filterPast()">Filter past</button>
       <span class="pull-right">Sort by <a href="">date</a></span>
       <div class="clearfix"></div>
       <table class="table">
