@@ -9,7 +9,6 @@ angular.module('attendance-controller', [])
       .success(function(data){
         $scope.lessons = data;
         var t = parseData();
-        var showAll = moment("01/09/2015", "DD-MM-YYYY");
         $scope.totalTime = t.totalDuration;
         $scope.hoursAttended = t.hoursAttended;
         $scope.lessonsAttended = t.lessonsAttended;
@@ -39,9 +38,12 @@ angular.module('attendance-controller', [])
       //console.log(classes);
     };
 
+    var showAll = moment("01/09/2015", "DD-MM-YYYY");
+    var togglePast = false;
+
     $scope.filterPast = function(){
-      console.log($scope.dateRange);
-      $scope.dateRange = moment();
+      $scope.dateRange = (togglePast) ? showAll : moment();
+      togglePast = !togglePast;
     };
 
     //private methods
