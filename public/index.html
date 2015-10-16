@@ -64,7 +64,11 @@
           <th></th>
         </tr>
         <tr ng-class="{'lesson-attended': lesson.attended}" ng-repeat="lesson in lessons | orderBy:['date', 'startTime'] | filterDate:dateRange" id="entry-{{lesson.lessonId}}">
-          <td>{{lesson.lessonType}}</td>
+          <td ng-switch="lesson.lessonType">
+            <span ng-switch-when="Lecture" class="label label-info">Lecture</span>
+            <span ng-switch-when="Tutorial" class="label label-info">Tutorial</span>
+            <span ng-switch-when="Practicum" class="label label-info">Lab</span>
+          </td>
           <td>{{lesson.subject}}</td>
           <td>{{lesson.date | date : 'd/M/yy' }}</td>
           <td>{{lesson.startTime}} - {{lesson.endTime}}</td>
